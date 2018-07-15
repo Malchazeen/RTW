@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var submit = document.getElementById("submit");
+            submit.addEventListener("click", () => {
+                const Town = 400;
+                const LargeTown = 2000;
+                const MinorCity = 6000;
+                const LargeCity = 12000;
+                const HugeCity = 24000;
+
+                const Peasant = 240;
+                const Infantry = 160;
+                const Cavalry = 108;
+                const Artillery = 64;
+
+                var currentPopulation = document.getElementById("input").value;
+
+                var targetPopulation = 0;
+                if (currentPopulation < Town)
+                    targetPopulation = Town;
+                else if (currentPopulation < LargeTown)
+                    targetPopulation = LargeTown;
+                else if (currentPopulation < MinorCity)
+                    targetPopulation = MinorCity;
+                else if (currentPopulation < LargeCity)
+                    targetPopulation = LargeCity;
+                else if (currentPopulation < HugeCity)
+                    targetPopulation = HugeCity;
+
+                var requiredPopulation = targetPopulation - currentPopulation;
+                var requiredPeasant = requiredPopulation / Peasant;
+                var requiredInfantry = requiredPopulation / Infantry;
+                var requiredCavalry = requiredPopulation / Cavalry;
+                var requiredArtillery = requiredPopulation / Artillery;
+
+                document.getElementById("result").innerText = `Target Population ${targetPopulation}
+Required Population ${requiredPopulation}
+Required Peasant ${requiredPeasant}
+Required Infantry ${requiredInfantry}
+Required Cavalry ${requiredCavalry}
+Required Artillery ${requiredArtillery}`;
+            });
+		});
+    </script>
+</head>
+<body>
+    <span>Current Population</span><input id="input" type="number" /><button id="submit">Calculate</button>
+    <p id="result"></p>
+</body>
+</html>
